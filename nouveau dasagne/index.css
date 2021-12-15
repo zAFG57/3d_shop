@@ -1,0 +1,229 @@
+html ,body ,h1 ,h2 ,h3 ,p{
+    margin: 0px;
+    padding: 0px;
+    color: var(--tc);
+}
+:root {
+    --bc: #012;                     /*background color */
+    --bcs: #002952;                 /*background color */
+    --tc: #fff;                     /*text color*/
+    --ac: #ebdc10;                  /*accent color*/
+    --acs: hsl(327, 100%, 7%);              /*accent color soft*/
+}
+body {
+    background: var(--bc);
+    overflow: hidden;
+}
+/*                              bando d'affilliation */
+.bando {
+    width: 100vw;
+    height: 5vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background: var(--bc);
+    text-align: center;
+    padding-top: calc(5vh - 1em);
+    z-index: 999999;
+}
+.bando > span {
+    color: var(--ac);
+}
+/*                              le scroll snap */
+.scroll {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    overflow-x: hidden;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    scroll-behavior: smooth;
+}
+.scroll::-webkit-scrollbar{
+    display: none;
+}
+.scroll > * {
+    scroll-snap-align: start;
+}
+/*                              1er/2ème section  */
+.première-section, .deuxième-section {
+    font-family: 'Corinthia', cursive;
+    height: 140vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8em;
+}
+/*                              section cadybite/décapsuchate*/
+.section-cadybite , .section-décapsuchate{
+    height: 120vh;
+    background: var(--bcs);
+}
+.cadybite-vidéo, .décapsuchate-vidéo {
+    position: relative;
+    top: 40vh;
+    left: 25vw;
+    width: 30%;
+    aspect-ratio: auto 16 / 9;
+    border: 1px solid;
+    overflow: hidden;
+    transform: translate(-50%,-50%);
+}
+/*                              carrosell */
+.cadybite-vidéo >div , .décapsuchate-vidéo>div{
+    position: absolute;
+    bottom: 0px;
+    display: flex;
+    width: 100vw;
+    background: var(--bcs);
+    animation: carroselle 15s infinite linear;
+}
+.cadybite-vidéo >div>h1 , .décapsuchate-vidéo>div>h1{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100vw;
+}
+.décapsuchate-vidéo>div {
+    animation: carroselle 15s infinite linear reverse;
+}
+.décapsuchate-vidéo>div , .décapsuchate-vidéo>div>h1 {
+    width: 150vw;
+}
+@keyframes carroselle {
+    0% {
+        transform: translate(0vw);
+    }
+    100% {
+        transform: translate(-50%);
+    }
+} 
+/*                              le paragraphe */
+.cadybite-text , .décapsuchate-text{
+    position: relative;
+    top: 40vh;
+    left: 70vw;
+    width: 40%;
+    font-size: 1.4em;
+    transform: translate(-50%,-50%);
+}
+/*                               le(s) bouton */
+.btn-commander {
+    position: relative;
+    top: 50vh;
+    left: 50vw;
+    width: max-content;
+    font-size: 4em;
+    transform: translate(-50%,-50%);
+    font-family: 'Corinthia', cursive;
+    padding: 20px;
+}
+.btn-commander::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    transform: translateY(-50%);
+    width: 0px;
+    height: 0px;
+    border: 0px solid;
+    border-right: 0px !important;
+    transition: width 0.5s, height 0.5s 0.5s, border 0s 1s;
+}
+.btn-commander::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    transform: translateY(-50%);
+    width: 0px;
+    height: 0px;
+    border: 0px solid;
+    border-left: 0px !important;
+    transition: width 0.5s, height 0.5s 0.5s, border 0s 1s;
+}
+.btn-commander:hover::after , .btn-commander:hover::before {
+    border: 1px solid;
+    width: 50%;
+    height: 100%;
+    transition: width 0.5s 0.5s, height 0.5s;
+}
+
+
+
+
+
+
+/*                              responsive pour téléphone */
+@media screen and (max-width: 900px) {
+    .première-section, .deuxième-section {
+        font-size: 15vw;
+        height: 100vh;
+        font-weight: lighter;
+    }
+    .section-cadybite , .section-décapsuchate{
+        height: calc(max-content + 10em);
+    }
+    .cadybite-vidéo , .cadybite-text, .décapsuchate-vidéo, .décapsuchate-text, .btn-commander{
+        top: 0px;
+        left: 50vw;
+        transform: translateX(-50%);
+    }
+    .cadybite-vidéo , .décapsuchate-vidéo {
+        top: 10em;
+        left: 50vw;
+        transform: translateX(-50%);
+        width: 90vw;
+    }
+    .cadybite-vidéo>div>h1, .cadybite-vidéo>div {
+        width: 120em;
+    }
+    .décapsuchate-vidéo>div>h1 , .décapsuchate-vidéo>div {
+        width: 180em;
+    }
+    .cadybite-vidéo>div>h1 , .décapsuchate-vidéo>div>h1 {
+        font-size: 1.5em;
+    }
+    .cadybite-text, .décapsuchate-text {
+        top: 10em;
+        width: 85vw;
+    }
+    .btn-commander {
+        top: 4em;
+    }
+    .scroll {
+        scroll-snap-type: none;
+    }
+
+
+
+/*  */
+/*  */
+/*  */
+/*  */
+/*                                                    *//* le bouton en verstion téléphone *//*--*/
+
+    .btn-commander {
+        border: 1px solid;
+    }
+    .btn-commander::after, .btn-commander::before {
+        content: none;
+    }
+
+
+/*  */
+/*  */
+/*  */
+}
+@media screen and (max-width: 400px) {
+    .section-cadybite , .section-décapsuchate{
+        height: max-content;
+        padding-bottom: 10em;
+    }
+    .section-décapsuchate {
+        padding-bottom: 20em;
+    }
+}

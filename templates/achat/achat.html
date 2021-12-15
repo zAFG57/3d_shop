@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  </head>
+  <body>
+    <link rel="stylesheet" href="http://127.0.0.1/templates/css/achat.css" type="text/css">
+    <h1>
+      vous être en train d'acheter un {{obj}}
+      {%if lien!= '_':%}
+        avec le lien affilier {{lien}}
+      {%endif%}
+    </h1>
+
+
+    <script src="https://www.paypal.com/sdk/js?client-id=AW80ffqa7xCHYb7SMhUYGx_i8pNYKIlTbrZrji4HvzKq3tZwAK4jsvQRlGevtgCaL32dZkf_VLxeILW4&currency=EUR"></script>
+
+    <div id="paypal-button-container"></div>
+
+    <script>
+      paypal.Buttons({
+        // Sets up the transaction when a payment button is clicked
+        createOrder: function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{
+              amount: {
+                {%if obj=='cadybite':%}
+                  {%if lien!= '_':%}
+                    value:'1.5'
+                  {% else :%}
+                    value:'2'
+                  {%endif%}
+                {%else:%}
+                  {%if lien!= '_':%}
+                    value:'3.5'
+                  {% else :%}
+                    value:'4'
+                  {%endif%}
+                {%endif%}
+              }
+            }]
+          });
+        },
+        // Finalize the transaction after payer approval
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(orderData) {
+            // Successful capture! For dev/demo purposes:
+                console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                var transaction = orderData.purchase_units[0].payments.captures[0];
+                async function sha256(message) {
+                  const a = new TextEncoder().encode(message);
+                  const b = await crypto.subtle.digest('SHA-256', a);
+                  const c = Array.from(new Uint8Array(b));
+                  const d = c.map(b => b.toString(16).padStart(2, '0')).join('');
+                  return d;
+                }
+                sha256('{{lien}}'+'{{obj}}'+'{{ach}}').then((value) => {ach2 = value;window.location = window.location + '/valide/' + ach2;});
+
+          });
+        }
+      }).render('#paypal-button-container');
+    </script>
+  </body>
+</html>

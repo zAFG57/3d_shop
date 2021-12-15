@@ -1,0 +1,78 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    cursor: none;
+}
+body {
+    overflow: hidden;
+    background: var(--back);
+    color: var(--color);
+}
+.scroll {
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    
+    scroll-behavior: smooth;
+}
+.scroll::-webkit-scrollbar{
+    display: none;
+  }
+:root {
+    --back: black;
+    --back2: gray;
+    --color: #fff;
+    --acco: #62ff82;
+    --taile: 50vw;
+    --taile2: -50vw;
+}
+/*                      la souris            */
+#mouse {
+    position: fixed;
+    height: 7px;
+    width: 7px;
+    border-radius: 50%;
+    background-color: var(--color);
+    z-index: 5555556;
+    transition: 0.05s linear;
+    position: fixed;
+    transform: translate(-50%,-50%);
+}
+#mouse h1{
+    color: var(--acco);
+}
+#mouselerp {
+    position: fixed;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    z-index: 5555556;
+    transition: 0.1s linear;
+    border: 2px solid var(--color);
+    transform: translate(-50%,-50%);
+}
+h1,h3 {
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%,-50%);
+    text-shadow: 1px 1px black;
+}
+h3 {
+    top: 50%;
+}
+span {
+    position: relative;
+    top: 0px;
+    color: white;
+    padding-bottom: 0px;
+    transition: 0.25s ease-in-out 0.5s;
+    animation: respiration 2s ease-in-out;
+}
+span:hover {
+    color: var(--acco);
+    top: -10px;
+    transition: none;
+}

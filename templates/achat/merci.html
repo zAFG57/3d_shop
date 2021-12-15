@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>merci pour votre achats</title>
+</head>
+<body>
+    <link rel="stylesheet" href="http://127.0.0.1/templates/css/merci.css" type="text/css">
+    <div id="mouse"></div>
+    <div id="mouselerp"></div>
+
+
+    <section class="scroll">
+        <h1 id="mrc">merci aux clients fidèles!!</h1>
+        <h3>
+            {%for i in text%}
+            <span>
+                {{i}}
+            </span>
+            {%endfor%}
+        </h3>
+        {%if lien != '_'%}
+            <p>({{lien}} reçevra une compensation financiaire automatiquement.)</p>
+        {%endif%}
+        <p></p>
+    </section>
+        
+    <script>
+        sound = new Audio('http://127.0.0.1/templates/son/mrc.mp3')
+        document.getElementById('mrc').addEventListener("mouseover", function( event ) {
+            sound.pause();
+            sound.currentTime = 0;
+            sound.play()
+            console.log('mcr');
+        })
+    </script>
+    <script src="http://127.0.0.1/templates/js/main.js"></script>
+</body>
+</html>

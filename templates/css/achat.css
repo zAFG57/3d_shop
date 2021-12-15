@@ -1,0 +1,33 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+:root {
+    --back: #333;
+    --back2: gray;
+    --color: #fff;
+    --acco: #62ff82;
+    --taile: 50vw;
+    --taile2: -50vw;
+}
+body {
+    background: var(--back);
+}
+h1 {
+    margin: revert;
+    position: absolute;
+    width: max-content;
+    left: 50%;
+    transform: translate(-50%);
+    color: #fff;
+}
+#paypal-button-container {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%);
+    width: 60vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
